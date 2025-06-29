@@ -686,7 +686,7 @@
         function getLocationDescription(place) {
             // Basic location description based on coordinates
             const locationDescriptions = {
-                'Liseberg': 'Örgryte, Gothenburg',
+                'Kiruna': 'Kiruna Municipality, Norrbotten County',
                 'Skara Sommarland': 'Axvall, Skara Municipality',
                 'Gothenburg Gokartcenter': 'Säve, Gothenburg',
                 'Öckerö': 'Öckerö Municipality, Gothenburg Archipelago',
@@ -699,8 +699,8 @@
 
         function getWeatherLocation(place) {
             // Determine weather location based on place
-            if (place.name.includes('Gothenburg') || place.name === 'Liseberg' || place.name === 'Öckerö') {
-                return 'Gothenburg';
+            if (place.name.includes('Gothenburg') || place.name === 'Kiruna' || place.name === 'Öckerö') {
+                return 'Kiruna';
             } else if (place.name === 'Visby' || place.name === 'Fårö') {
                 return 'Visby';
             } else if (place.name === 'Ales stenar') {
@@ -708,7 +708,7 @@
             } else if (place.name === 'Skara Sommarland') {
                 return 'Skara';
             }
-            return 'Gothenburg'; // Default
+            return 'Kiruna'; // Default
         }
 
         function getBestTimeToVisit(place) {
@@ -729,7 +729,7 @@
 
         function getTransportInfo(place) {
             const transport = {
-                'Liseberg': 'Tram 4, 5, 6, 8, or 13 to Liseberg stop. Also accessible by bus.',
+                'Kiruna': 'Train or flight to Kiruna Airport. Local buses available for transportation.',
                 'Skara Sommarland': 'By car via E20, or train to Skara station then taxi/bus.',
                 'Gothenburg Gokartcenter': 'Bus 35 from central Gothenburg, or by car.',
                 'Öckerö': 'Ferry from Lilla Varholmen (free with Västtrafik ticket).',
