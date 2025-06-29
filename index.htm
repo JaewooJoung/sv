@@ -963,11 +963,15 @@
             if (!userLocation || places.length === 0) return;
             
             places.forEach(place => {
+                // Handle both lat/lng and coordinates.latitude/longitude formats
+                const placeLat = place.lat || place.coordinates?.latitude;
+                const placeLng = place.lng || place.coordinates?.longitude;
+                
                 // Make sure place has valid coordinates
-                if (place.lat && place.lng && !isNaN(place.lat) && !isNaN(place.lng)) {
+                if (placeLat && placeLng && !isNaN(placeLat) && !isNaN(placeLng)) {
                     const distance = calculateDistance(
                         userLocation.lat, userLocation.lng,
-                        place.lat, place.lng
+                        placeLat, placeLng
                     );
                     
                     // Only set distance if calculation is valid
@@ -999,10 +1003,18 @@
             const processedPlaces = getProcessedPlaces();
             
             processedPlaces.forEach(place => {
-                if (place.distance) {
-                    const dist = parseFloat(place.distance);
-                    if (dist < shortestDistance) {
-                        shortestDistance = dist;
+                // Handle both lat/lng and coordinates.latitude/longitude formats
+                const placeLat = place.lat || place.coordinates?.latitude;
+                const placeLng = place.lng || place.coordinates?.longitude;
+                
+                if (placeLat && placeLng) {
+                    const distance = calculateDistance(
+                        userLocation.lat, userLocation.lng,
+                        placeLat, placeLng
+                    );
+                    
+                    if (!isNaN(distance) && distance < shortestDistance) {
+                        shortestDistance = distance;
                         nearestPlace = place;
                     }
                 }
@@ -1051,12 +1063,16 @@
             }
             
             grid.innerHTML = processedPlaces.map(place => {
+                // Handle both lat/lng and coordinates.latitude/longitude formats
+                const placeLat = place.lat || place.coordinates?.latitude;
+                const placeLng = place.lng || place.coordinates?.longitude;
+                
                 // Safely get distance display
                 let distanceDisplay = '';
-                if (userLocation && place.lat && place.lng) {
+                if (userLocation && placeLat && placeLng) {
                     const distance = calculateDistance(
                         userLocation.lat, userLocation.lng,
-                        place.lat, place.lng
+                        placeLat, placeLng
                     );
                     if (!isNaN(distance) && isFinite(distance)) {
                         distanceDisplay = `<div class="distance">${distance.toFixed(1)} km away</div>`;
@@ -1075,7 +1091,7 @@
                             ${distanceDisplay}
                             <div class="details">
                                 <span class="time">${place.hours || place.opening_hours || 'Hours vary'}</span>
-                                <button class="visit-btn" onclick="event.stopPropagation(); focusOnPlace(${place.lat}, ${place.lng})">View on Map</button>
+                                <button class="visit-btn" onclick="event.stopPropagation(); focusOnPlace(${placeLat}, ${placeLng})">View on Map</button>
                             </div>
                         </div>
                     </div>
@@ -1104,9 +1120,13 @@
             markers = [];
             
             places.forEach(place => {
+                // Handle both lat/lng and coordinates.latitude/longitude formats
+                const placeLat = place.lat || place.coordinates?.latitude;
+                const placeLng = place.lng || place.coordinates?.longitude;
+                
                 // Make sure place has valid coordinates
-                if (place.lat && place.lng && !isNaN(place.lat) && !isNaN(place.lng)) {
-                    const marker = L.marker([place.lat, place.lng]).addTo(map);
+                if (placeLat && placeLng && !isNaN(placeLat) && !isNaN(placeLng)) {
+                    const marker = L.marker([placeLat, placeLng]).addTo(map);
                     marker.bindPopup(`
                         <div style="text-align: center;">
                             <h3>${place.name}</h3>
