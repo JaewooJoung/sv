@@ -1,19 +1,19 @@
 [
   {
     "id": 1,
-    "name": "Liseberg",
-    "category": "entertainment",
+    "name": "Kiruna",
+    "category": "nature",
     "coordinates": {
-      "latitude": 57.6949,
-      "longitude": 11.9926
+      "latitude": 67.8503,
+      "longitude": 20.2559
     },
-    "description": "Scandinavia's largest amusement park with thrilling rides, beautiful gardens, and seasonal events throughout the year.",
-    "hours": "Varies by season",
-    "admission": "From 95 SEK",
-    "website": "https://www.liseberg.se",
+    "description": "Sweden's northernmost city, famous for the Northern Lights, midnight sun, Icehotel, and Sami culture.",
+    "hours": "Always accessible",
+    "admission": "Free to explore",
+    "website": "https://www.visitkiruna.se",
     "color": "#ff6b6b",
     "image": "/sv/png/1.png",
-    "detailedDescription": "Liseberg is Scandinavia's largest amusement park, located in Gothenburg. Founded in 1923, the park offers a perfect blend of thrilling rides, beautiful gardens, and family-friendly attractions. The park features over 40 rides including the wooden roller coaster Balder, consistently rated as one of the world's best. During summer, the park hosts concerts and shows, while the Christmas season transforms Liseberg into a magical winter wonderland with millions of lights, traditional Christmas market, and seasonal treats."
+    "detailedDescription": "Kiruna, located 145 km north of the Arctic Circle, is Sweden's northernmost city and a gateway to unique Arctic experiences. The city is world-famous for the original Icehotel in nearby Jukkasjärvi, where artists create stunning ice sculptures and rooms each winter. Kiruna offers spectacular views of the Northern Lights from September to March and experiences the midnight sun from May to July. The city is also home to the Sami people, Sweden's indigenous population, and visitors can learn about their culture and traditions. Additionally, Kiruna is undergoing a historic city transformation, with the entire city center being relocated due to iron ore mining expansion."
   },
   {
     "id": 2,
