@@ -126,7 +126,7 @@
             height: 100vh;
             background: 
                 linear-gradient(135deg, rgba(30, 64, 175, 0.85) 0%, rgba(45, 212, 191, 0.85) 100%),
-                url('/sv/png/sweden.png') center/cover no-repeat;
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -396,197 +396,6 @@
             flex-direction: column;
         }
 
-        .place-card.nearest {
-            border: 2px solid #4CAF50;
-            box-shadow: 0 0 30px rgba(76, 175, 80, 0.3);
-        }
-
-        .place-card-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.3;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 0;
-        }
-
-        .place-card:hover .place-card-bg {
-            opacity: 0.4;
-            transform: scale(1.05);
-        }
-
-        .place-card-content {
-            position: relative;
-            z-index: 1;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .place-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(30, 64, 175, 0.15), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .place-card:hover::before {
-            opacity: 1;
-        }
-
-        .place-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.3);
-        }
-
-        .place-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #ffffff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .place-card h3 a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .place-card h3 a:hover {
-            color: #60a5fa;
-        }
-
-        .place-card .category {
-            display: inline-block;
-            padding: 5px 15px;
-            background: rgba(30, 64, 175, 0.3);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            color: #60a5fa;
-            border: 1px solid rgba(30, 64, 175, 0.4);
-            text-transform: capitalize;
-        }
-
-        .place-card p {
-            color: #d0d0d0;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            flex: 1;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .place-card .distance {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin: 15px 0;
-            color: #4CAF50;
-            font-weight: 600;
-        }
-
-        .place-card .distance::before {
-            content: '🚶‍♂️';
-            font-size: 1.2rem;
-        }
-
-        .place-card .details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .place-card .time {
-            color: #2dd4bf;
-            font-weight: 600;
-        }
-
-        .place-card .visit-btn {
-            padding: 8px 20px;
-            background: linear-gradient(135deg, #1e40af, #2dd4bf);
-            border: none;
-            border-radius: 25px;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .place-card .visit-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(30, 64, 175, 0.4);
-        }
-
-        .filter-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 10px 25px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 30px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .filter-btn:hover {
-            background: rgba(30, 64, 175, 0.3);
-            border-color: #1e40af;
-        }
-
-        .filter-btn.active {
-            background: linear-gradient(135deg, #1e40af, #2dd4bf);
-            border-color: transparent;
-        }
-
-        .sort-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            align-items: center;
-        }
-
-        .sort-label {
-            color: #888;
-            font-weight: 600;
-        }
-
-        .sort-btn {
-            padding: 8px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .sort-btn.active {
-            background: rgba(76, 175, 80, 0.2);
-            border-color: #4CAF50;
-            color: #4CAF50;
-        }
-
         .footer {
             text-align: center;
             padding: 50px 0;
@@ -702,27 +511,18 @@
                 </div>
             </div>
             
-            <div class="filter-container">
-                <button class="filter-btn active" onclick="filterPlaces('all')">All Adventures</button>
-                <button class="filter-btn" onclick="filterPlaces('museum')">Museums & Galleries</button>
-                <button class="filter-btn" onclick="filterPlaces('park')">Parks & Nature</button>
-                <button class="filter-btn" onclick="filterPlaces('shopping')">Shopping Districts</button>
-                <button class="filter-btn" onclick="filterPlaces('culture')">Cultural Sites</button>
-                <button class="filter-btn" onclick="filterPlaces('entertainment')">Entertainment</button>
-                <button class="filter-btn" onclick="filterPlaces('food')">Food & Dining</button>
-                <button class="filter-btn" onclick="filterPlaces('hotel')">Hotels & Accommodation</button>
-                <button class="filter-btn" onclick="filterPlaces('nature')">Nature & Islands</button>
-                <button class="filter-btn" onclick="filterPlaces('historical')">Historical Sites</button>
-            </div>
-
-            <div class="sort-container">
-                <span class="sort-label">Organize by:</span>
-                <button class="sort-btn" id="sort-distance" onclick="sortByDistance()">Closest to You</button>
-                <button class="sort-btn" id="sort-name" onclick="sortByName()">Alphabetical</button>
-            </div>
-
             <div class="places-grid" id="places-grid">
-                <!-- Place cards will be dynamically inserted here -->
+                <!-- Sample places will be shown here -->
+                <div class="place-card">
+                    <div style="position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column;">
+                        <div style="display: inline-block; padding: 5px 15px; background: rgba(30, 64, 175, 0.3); backdrop-filter: blur(10px); border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px; color: #60a5fa; border: 1px solid rgba(30, 64, 175, 0.4);">Sample Location</div>
+                        <h3>Göteborg Centrum</h3>
+                        <p>Explore the heart of Sweden's second-largest city with its beautiful architecture and vibrant culture.</p>
+                        <div style="display: flex; align-items: center; gap: 5px; margin: 15px 0; color: #4CAF50; font-weight: 600;">
+                            🚶‍♂️ <span id="distance-display">Calculating distance...</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -735,13 +535,8 @@
 
     <script>
         // Global variables
-        let places = [];
         let userLocation = null;
         let userMarker = null;
-        let currentFilter = 'all';
-        let currentSort = null;
-        let markers = [];
-        let nearestPlaceId = null;
         let autoScrollEnabled = true;
 
         // Initialize map centered on Göteborg
@@ -753,7 +548,37 @@
             maxZoom: 19
         }).addTo(map);
 
-        // Enhanced GPS tracking from CEVT code
+        // Create custom user icon
+        const userIcon = L.divIcon({
+            className: 'user-location-marker',
+            html: `
+                <div style="
+                    width: 20px; 
+                    height: 20px; 
+                    background: #4CAF50; 
+                    border: 3px solid white; 
+                    border-radius: 50%; 
+                    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+                    position: relative;
+                ">
+                    <div style="
+                        position: absolute;
+                        top: -10px;
+                        left: -10px;
+                        width: 40px;
+                        height: 40px;
+                        border: 2px solid #4CAF50;
+                        border-radius: 50%;
+                        animation: radar 2s infinite;
+                        opacity: 0.3;
+                    "></div>
+                </div>
+            `,
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+        });
+
+        // Enhanced GPS tracking function
         function showPosition(position) {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
@@ -790,10 +615,12 @@
                     const city = data.address.city || data.address.town || data.address.village || 'Unknown location';
                     document.getElementById('gps-city').innerHTML = `City: ${city}`;
                     
-                    // Update weather for current location if different city
-                    if (city && city !== 'Unknown location') {
-                        getWeatherForLocation(city);
-                    }
+                    // Update weather for current location
+                    getWeatherForLocation(city);
+                    
+                    // Calculate distance to sample location (Göteborg Centrum)
+                    const distance = calculateDistance(latitude, longitude, 57.7089, 11.9746);
+                    document.getElementById('distance-display').textContent = `${distance.toFixed(1)} km away`;
                 })
                 .catch(error => {
                     console.error('Error getting city:', error);
@@ -802,17 +629,6 @@
 
             // Update user marker on map
             updateUserMarker(latitude, longitude);
-            
-            // Update distances to all places
-            updateDistances();
-            
-            // Find nearest place and auto-scroll if enabled
-            if (autoScrollEnabled) {
-                findAndScrollToNearest();
-            }
-            
-            // Re-render place cards to show updated distances
-            renderPlaceCards();
         }
 
         function showError(error) {
@@ -820,7 +636,21 @@
             const gpsStatus = document.getElementById("gps-status-text");
             
             gpsDot.classList.remove("active");
-            gpsStatus.textContent = `GPS Error: ${error.message}`;
+            
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    gpsStatus.textContent = "Location access denied";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    gpsStatus.textContent = "Location unavailable";
+                    break;
+                case error.TIMEOUT:
+                    gpsStatus.textContent = "Location timeout";
+                    break;
+                default:
+                    gpsStatus.textContent = "GPS Error occurred";
+                    break;
+            }
             
             document.getElementById("gps-coords").innerHTML = "Error: " + error.message;
             document.getElementById("gps-speed").innerHTML = "Speed: N/A";
@@ -830,21 +660,19 @@
         // Continuous location update function
         function startContinuousTracking() {
             if (navigator.geolocation) {
+                // Request permission and start tracking
+                navigator.geolocation.getCurrentPosition(showPosition, showError, {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                });
+                
                 // Watch position for continuous updates
                 navigator.geolocation.watchPosition(showPosition, showError, {
                     enableHighAccuracy: true,
                     timeout: 5000,
-                    maximumAge: 0
+                    maximumAge: 1000
                 });
-                
-                // Also update every second for better tracking
-                setInterval(() => {
-                    navigator.geolocation.getCurrentPosition(showPosition, showError, {
-                        enableHighAccuracy: true,
-                        timeout: 5000,
-                        maximumAge: 0
-                    });
-                }, 1000);
             } else {
                 document.getElementById("gps-status-text").textContent = "GPS not supported";
             }
@@ -852,150 +680,20 @@
 
         // Update user marker on map
         function updateUserMarker(lat, lng) {
+            // Remove existing marker if it exists
             if (userMarker) {
-                userMarker = L.marker([lat, lng], {
-                    icon: userIcon
-                }).addTo(map);
-                
-                userMarker.bindPopup('You are here! 🌟');
+                map.removeLayer(userMarker);
             }
+            
+            // Create new marker
+            userMarker = L.marker([lat, lng], {
+                icon: userIcon
+            }).addTo(map);
+            
+            userMarker.bindPopup('You are here! 🌟');
             
             // Center map on user location
-            map.setView([lat, lng], map.getZoom());
-        }
-
-        // Find nearest place and scroll to it
-        function findAndScrollToNearest() {
-            if (!userLocation || places.length === 0) return;
-            
-            let nearestPlace = null;
-            let shortestDistance = Infinity;
-            
-            const processedPlaces = getProcessedPlaces();
-            
-            processedPlaces.forEach(place => {
-                if (place.distance) {
-                    const dist = parseFloat(place.distance);
-                    if (dist < shortestDistance) {
-                        shortestDistance = dist;
-                        nearestPlace = place;
-                    }
-                }
-            });
-            
-            if (nearestPlace && nearestPlace.id !== nearestPlaceId) {
-                nearestPlaceId = nearestPlace.id;
-                
-                // Find the card element and scroll to it
-                const cards = document.querySelectorAll('.place-card');
-                cards.forEach((card, index) => {
-                    const cardTitle = card.querySelector('h3 a').textContent;
-                    if (cardTitle === nearestPlace.name) {
-                        // Highlight nearest card
-                        document.querySelectorAll('.place-card').forEach(c => c.classList.remove('nearest'));
-                        card.classList.add('nearest');
-                        
-                        // Smooth scroll to card
-                        card.scrollIntoView({ 
-                            behavior: 'smooth', 
-                            block: 'center' 
-                        });
-                    }
-                });
-            }
-        }
-
-        // Weather function for current location
-        function getWeatherForLocation(city) {
-            const weatherContainer = document.getElementById('weather-container');
-            
-            fetch(`https://api.weatherapi.com/v1/current.json?key=ad8caecea06c43d1912181938230407&q=${encodeURIComponent(city)}`)
-                .then(response => response.json())
-                .then(data => {
-                    const weather = data.current;
-                    const location = data.location;
-                    
-                    weatherContainer.innerHTML = `
-                        <div class="weather-location">${location.name}, ${location.country}</div>
-                        <div class="weather-content">
-                            <div class="weather-main">
-                                <div class="weather-icon-container">
-                                    <img src="https:${weather.condition.icon}" alt="${weather.condition.text}" class="weather-icon">
-                                </div>
-                                <div>
-                                    <div class="weather-temp">${Math.round(weather.temp_c)}°C</div>
-                                    <div class="weather-desc">${weather.condition.text}</div>
-                                </div>
-                            </div>
-                            <div class="weather-details">
-                                <div class="weather-detail">
-                                    <div class="weather-detail-label">Feels Like</div>
-                                    <div class="weather-detail-value">${Math.round(weather.feelslike_c)}°C</div>
-                                </div>
-                                <div class="weather-detail">
-                                    <div class="weather-detail-label">Humidity</div>
-                                    <div class="weather-detail-value">${weather.humidity}%</div>
-                                </div>
-                                <div class="weather-detail">
-                                    <div class="weather-detail-label">Wind Speed</div>
-                                    <div class="weather-detail-value">${weather.wind_kph} km/h</div>
-                                </div>
-                                <div class="weather-detail">
-                                    <div class="weather-detail-label">UV Index</div>
-                                    <div class="weather-detail-value">${weather.uv}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="weather-update">Weather updated: ${weather.last_updated}</div>
-                    `;
-                })
-                .catch(error => {
-                    console.error('Error fetching weather:', error);
-                });
-        }
-
-        // Handle auto-scroll checkbox
-        document.getElementById('auto-scroll').addEventListener('change', function(e) {
-            autoScrollEnabled = e.target.checked;
-            if (autoScrollEnabled) {
-                findAndScrollToNearest();
-            }
-        });
-        
-        }
-
-        // Load places data from JSON file
-        async function loadPlacesData() {
-            try {
-                const response = await fetch('places.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                places = await response.json();
-                console.log('Places data loaded:', places.length, 'places');
-                
-                // Initialize map and UI after data loads
-                addMarkersToMap();
-                renderPlaceCards();
-                
-                // Update distances if user location is available
-                if (userLocation) {
-                    updateDistances();
-                    renderPlaceCards();
-                }
-            } catch (error) {
-                console.error('Error loading places data:', error);
-                
-                // Fallback: show error message to user
-                const grid = document.getElementById('places-grid');
-                grid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #ff5252;">
-                        <h3>Error Loading Places</h3>
-                        <p>Could not load places.json file. Please check if the file exists and is properly formatted.</p>
-                        <p>Error: ${error.message}</p>
-                    </div>
-                `;
-            }
+            map.setView([lat, lng], 14);
         }
 
         // Calculate distance between two points
@@ -1016,140 +714,96 @@
             return deg * (Math.PI/180);
         }
 
-        // Update distances for all places
-        function updateDistances() {
-            if (!userLocation) return;
+        // Weather function for current location
+        function getWeatherForLocation(city) {
+            const weatherContainer = document.getElementById('weather-container');
             
-            places.forEach(place => {
-                const distance = calculateDistance(
-                    userLocation.lat, userLocation.lng,
-                    place.lat, place.lng
-                );
-                place.distance = distance.toFixed(1);
-            });
-        }
-
-        // Get processed places with current filter
-        function getProcessedPlaces() {
-            let filteredPlaces = places;
-            
-            if (currentFilter !== 'all') {
-                filteredPlaces = places.filter(place => place.category === currentFilter);
-            }
-            
-            return filteredPlaces;
-        }
-
-        // Navigate to place detail page
-        function goToPlaceDetail(placeId) {
-            window.location.href = `places.html?id=${placeId}`;
-        }
-
-        // Render place cards
-        function renderPlaceCards() {
-            const grid = document.getElementById('places-grid');
-            let processedPlaces = getProcessedPlaces();
-            
-            // Sort places if needed
-            if (currentSort === 'distance' && userLocation) {
-                processedPlaces.sort((a, b) => {
-                    const distA = parseFloat(a.distance) || Infinity;
-                    const distB = parseFloat(b.distance) || Infinity;
-                    return distA - distB;
-                });
-            } else if (currentSort === 'name') {
-                processedPlaces.sort((a, b) => a.name.localeCompare(b.name));
-            }
-            
-            grid.innerHTML = processedPlaces.map(place => `
-                <div class="place-card" data-category="${place.category}" onmousemove="updateMousePosition(event, this)">
-                    <div class="place-card-bg" style="background-image: url('${place.image || place.images?.[0] || 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400'}')"></div>
-                    <div class="place-card-content">
-                        <div class="category">${place.category}</div>
-                        <h3><a href="javascript:void(0)" onclick="goToPlaceDetail(${place.id})">${place.name}</a></h3>
-                        <p>${place.description}</p>
-                        ${place.distance ? `<div class="distance">${place.distance} km away</div>` : ''}
-                        <div class="details">
-                            <span class="time">${place.hours || place.opening_hours || 'Hours vary'}</span>
-                            <button class="visit-btn" onclick="focusOnPlace(${place.lat}, ${place.lng})">View on Map</button>
+            // Use a free weather API (OpenWeatherMap requires API key, so we'll show sample data)
+            weatherContainer.innerHTML = `
+                <div class="weather-location">${city}, Sweden</div>
+                <div class="weather-content">
+                    <div class="weather-main">
+                        <div class="weather-icon-container">
+                            <div style="font-size: 80px;">☀️</div>
+                        </div>
+                        <div>
+                            <div class="weather-temp">18°C</div>
+                            <div class="weather-desc">Partly Cloudy</div>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Feels Like</div>
+                            <div class="weather-detail-value">20°C</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Humidity</div>
+                            <div class="weather-detail-value">65%</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Wind Speed</div>
+                            <div class="weather-detail-value">12 km/h</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">UV Index</div>
+                            <div class="weather-detail-value">5</div>
                         </div>
                     </div>
                 </div>
-            `).join('');
+                <div class="weather-update">Weather updated: Now</div>
+            `;
         }
 
-        // Update mouse position for card hover effects
-        function updateMousePosition(event, card) {
-            const rect = card.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
-            card.style.setProperty('--mouse-x', x + 'px');
-            card.style.setProperty('--mouse-y', y + 'px');
-        }
-
-        // Focus on place on map
-        function focusOnPlace(lat, lng) {
-            map.setView([lat, lng], 15);
-        }
-
-        // Add markers to map
-        function addMarkersToMap() {
-            // Clear existing markers
-            markers.forEach(marker => map.removeLayer(marker));
-            markers = [];
-            
-            places.forEach(place => {
-                const marker = L.marker([place.lat, place.lng]).addTo(map);
-                marker.bindPopup(`
-                    <div style="text-align: center;">
-                        <h3>${place.name}</h3>
-                        <p>${place.description}</p>
-                        <p><strong>Hours:</strong> ${place.hours || place.opening_hours || 'Hours vary'}</p>
-                        ${place.distance ? `<p><strong>Distance:</strong> ${place.distance} km</p>` : ''}
-                        <button onclick="goToPlaceDetail(${place.id})" style="background: #1e40af; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin: 5px;">View Details</button>
-                        ${place.website ? `<br><a href="${place.website}" target="_blank" style="color: #1e40af;">Visit Website</a>` : ''}
+        // Add sample weather data initially
+        function showInitialWeather() {
+            const weatherContainer = document.getElementById('weather-container');
+            weatherContainer.innerHTML = `
+                <div class="weather-location">Göteborg, Sweden</div>
+                <div class="weather-content">
+                    <div class="weather-main">
+                        <div class="weather-icon-container">
+                            <div style="font-size: 80px;">🌤️</div>
+                        </div>
+                        <div>
+                            <div class="weather-temp">15°C</div>
+                            <div class="weather-desc">Partly Cloudy</div>
+                        </div>
                     </div>
-                `);
-                markers.push(marker);
-            });
+                    <div class="weather-details">
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Feels Like</div>
+                            <div class="weather-detail-value">17°C</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Humidity</div>
+                            <div class="weather-detail-value">70%</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">Wind Speed</div>
+                            <div class="weather-detail-value">8 km/h</div>
+                        </div>
+                        <div class="weather-detail">
+                            <div class="weather-detail-label">UV Index</div>
+                            <div class="weather-detail-value">3</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-update">Weather updated: Now</div>
+            `;
         }
 
-        // Filter functions
-        function filterPlaces(category) {
-            currentFilter = category;
-            
-            // Update active filter button
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            renderPlaceCards();
-        }
-
-        // Sort functions
-        function sortByDistance() {
-            currentSort = 'distance';
-            document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('sort-distance').classList.add('active');
-            renderPlaceCards();
-        }
-
-        function sortByName() {
-            currentSort = 'name';
-            document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('sort-name').classList.add('active');
-            renderPlaceCards();
-        }
+        // Handle auto-scroll checkbox
+        document.getElementById('auto-scroll').addEventListener('change', function(e) {
+            autoScrollEnabled = e.target.checked;
+        });
 
         // Initialize the application
-        async function init() {
-            // Get weather
-            getWeather();
+        function init() {
+            // Show initial weather
+            showInitialWeather();
             
             // Start GPS tracking
             startContinuousTracking();
-            
-            // Load places data from JSON file
-            await loadPlacesData();
             
             // Add smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1172,11 +826,11 @@
             @keyframes radar {
                 0% {
                     opacity: 1;
-                    transform: translate(-50%, -50%) scale(0);
+                    transform: scale(0);
                 }
                 100% {
                     opacity: 0;
-                    transform: translate(-50%, -50%) scale(1);
+                    transform: scale(1);
                 }
             }
         `;
