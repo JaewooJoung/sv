@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Details - Sverige Travel Mate</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #333;
+            border-top: 3px solid #1e40af;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(30, 64, 175, 0.3);
+            border-color: #1e40af;
+            transform: translateX(-5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh;
+            min-height: 500px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            margin-top: 70px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.3) 0%, rgba(10, 10, 10, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 60px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .place-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ffffff, #e0e0e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .place-category {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(30, 64, 175, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #60a5fa;
+            border: 1px solid rgba(30, 64, 175, 0.4);
+            text-transform: capitalize;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+            background: #111111;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.2);
+        }
+
+        .info-card h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #1e40af, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            background: rgba(30, 64, 175, 0.1);
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .info-content p {
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Map Section */
+        .map-container {
+            background: #111111;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(30, 64, 175, 0.2);
+            margin-bottom: 60px;
+        }
+
+        #detail-map {
+            width: 100%;
+            height: 400px;
+        }
+
+        /* Description Section */
+        .description-section {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .description-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1e40af, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description-section p {
+            color: #d0d0d0;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .action-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #1e40af, #2dd4bf);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
+        }
+
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .action-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Weather Widget */
+        .weather-widget {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .weather-widget h3 {
+            margin-bottom: 20px;
+            color: #b0b0b0;
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .weather-icon {
+            width: 64px;
+            height: 64px;
+        }
+
+        .weather-temp {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e40af, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .weather-desc {
+            color: #b0b0b0;
+            margin-top: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 0;
+            background: #0a0a0a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer p {
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .place-title {
+                font-size: 2.5rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .info-card {
+                padding: 30px 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Error State */
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .error-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ff5252;
+        }
+
+        .error-content p {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <span>←</span> Back to All Places
+            </a>
+        </div>
+    </nav>
+
+    <!-- Dynamic Content Container -->
+    <div id="content"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>🌊 2025 Sverige Travel Mate 🌊<br>Your Gateway to Swedish Adventures<br>Crafted with Love for Explorers ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get place ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const placeId = parseInt(urlParams.get('id'));
+
+        // Hide loading screen
+        function hideLoading() {
+            document.getElementById('loading-screen').classList.add('hide');
+        }
+
+        // Load place data
+        async function loadPlaceData() {
+            try {
+                const response = await fetch('places.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const places = await response.json();
+                const place = places.find(p => p.id === placeId);
+                
+                if (place) {
+                    renderPlaceDetails(place);
+                } else {
+                    renderError();
+                }
+            } catch (error) {
+                console.error('Error loading place data:', error);
+                renderError();
+            }
+        }
+
+        // Render error state
+        function renderError() {
+            const contentDiv = document.getElementById('content');
+            contentDiv.innerHTML = `
+                <div class="error-container">
+                    <div class="error-content">
+                        <h1>Place Not Found</h1>
+                        <p>Sorry, we couldn't find the place you're looking for.</p>
+                        <a href="index.html" class="action-btn">Back to Home</a>
+                    </div>
+                </div>
+            `;
+            hideLoading();
+        }
+
+        // Render place details
+        function renderPlaceDetails(place) {
+            const contentDiv = document.getElementById('content');
+            
+            // Update page title
+            document.title = `${place.name} - Sverige Travel Mate`;
+
+            // Render the place details
+            contentDiv.innerHTML = `
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="hero-bg">
+                        <img src="${place.image}" alt="${place.name}">
+                    </div>
+                    <div class="hero-overlay"></div>
+                    <div class="hero-content">
+                        <div class="container">
+                            <h1 class="place-title">${place.name}</h1>
+                            <span class="place-category">${place.category}</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Content Section -->
+                <section class="content-section">
+                    <div class="container">
+                        <!-- Description -->
+                        <div class="description-section">
+                            <h2>About ${place.name}</h2>
+                            <p>${place.detailedDescription || place.description}</p>
+                        </div>
+
+                        <!-- Info Grid -->
+                        <div class="content-grid">
+                            <!-- Basic Information -->
+                            <div class="info-card">
+                                <h2>Visit Information</h2>
+                                
+                                <div class="info-item">
+                                    <span class="info-icon">🕐</span>
+                                    <div class="info-content">
+                                        <h3>Opening Hours</h3>
+                                        <p>${place.hours}</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-icon">💰</span>
+                                    <div class="info-content">
+                                        <h3>Admission</h3>
+                                        <p>${place.admission}</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-icon">📍</span>
+                                    <div class="info-content">
+                                        <h3>Location</h3>
+                                        <p>${getLocationDescription(place)}</p>
+                                    </div>
+                                </div>
+
+                                ${place.website ? `
+                                <div class="info-item">
+                                    <span class="info-icon">🌐</span>
+                                    <div class="info-content">
+                                        <h3>Website</h3>
+                                        <p><a href="${place.website}" target="_blank" style="color: #60a5fa;">${place.website}</a></p>
+                                    </div>
+                                </div>
+                                ` : ''}
+                            </div>
+
+                            <!-- Tips & Recommendations -->
+                            <div class="info-card">
+                                <h2>Tips & Recommendations</h2>
+                                
+                                <div class="info-item">
+                                    <span class="info-icon">⭐</span>
+                                    <div class="info-content">
+                                        <h3>Best Time to Visit</h3>
+                                        <p>${getBestTimeToVisit(place)}</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-icon">🚇</span>
+                                    <div class="info-content">
+                                        <h3>Getting There</h3>
+                                        <p>${getTransportInfo(place)}</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-icon">📸</span>
+                                    <div class="info-content">
+                                        <h3>Photo Spots</h3>
+                                        <p>${getPhotoSpots(place)}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Map -->
+                        <div class="map-container">
+                            <div id="detail-map"></div>
+                        </div>
+
+                        <!-- Weather Widget -->
+                        <div class="weather-widget" id="weather-widget">
+                            <h3>Current Weather in ${getWeatherLocation(place)}</h3>
+                            <div class="weather-loading">
+                                <div class="loader" style="width: 30px; height: 30px;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <a href="https://maps.google.com/?q=${place.coordinates.latitude},${place.coordinates.longitude}" target="_blank" class="action-btn">
+                                <span>🗺️</span> Open in Google Maps
+                            </a>
+                            ${place.website ? `
+                            <a href="${place.website}" target="_blank" class="action-btn secondary">
+                                <span>🌐</span> Visit Official Website
+                            </a>
+                            ` : ''}
+                            <button onclick="window.print()" class="action-btn secondary">
+                                <span>🖨️</span> Print This Page
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            `;
+
+            // Initialize map
+            initializeMap(place);
+            
+            // Load weather
+            loadWeather(place);
+            
+            // Hide loading screen
+            setTimeout(hideLoading, 500);
+        }
+
+        // Initialize map
+        function initializeMap(place) {
+            const map = L.map('detail-map').setView([place.coordinates.latitude, place.coordinates.longitude], 15);
+            
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap contributors © CARTO',
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+
+            // Add marker
+            const placeIcon = L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="background: ${place.color}; width: 40px; height: 40px; border-radius: 50%; border: 3px solid white; box-shadow: 0 3px 10px rgba(0,0,0,0.3);"></div>`,
+                iconSize: [40, 40],
+                iconAnchor: [20, 20]
+            });
+
+            L.marker([place.coordinates.latitude, place.coordinates.longitude], { icon: placeIcon })
+                .addTo(map)
+                .bindPopup(`<strong>${place.name}</strong>`);
+        }
+
+        // Load weather
+        function loadWeather(place) {
+            const location = getWeatherLocation(place);
+            fetch(`https://api.weatherapi.com/v1/current.json?key=ad8caecea06c43d1912181938230407&q=${location}`)
+                .then(response => response.json())
+                .then(data => {
+                    const weatherWidget = document.getElementById('weather-widget');
+                    weatherWidget.innerHTML = `
+                        <h3>Current Weather in ${location}</h3>
+                        <div class="weather-info">
+                            <img src="https:${data.current.condition.icon}" alt="${data.current.condition.text}" class="weather-icon">
+                            <div>
+                                <div class="weather-temp">${Math.round(data.current.temp_c)}°C</div>
+                                <div class="weather-desc">${data.current.condition.text}</div>
+                            </div>
+                        </div>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error loading weather:', error);
+                    document.getElementById('weather-widget').innerHTML = '<p style="color: #888;">Weather information temporarily unavailable</p>';
+                });
+        }
+
+        // Helper functions
+        function getLocationDescription(place) {
+            // Basic location description based on coordinates
+            const locationDescriptions = {
+                'Liseberg': 'Örgryte, Gothenburg',
+                'Skara Sommarland': 'Axvall, Skara Municipality',
+                'Gothenburg Gokartcenter': 'Säve, Gothenburg',
+                'Öckerö': 'Öckerö Municipality, Gothenburg Archipelago',
+                'Ales stenar': 'Kåseberga, Ystad Municipality',
+                'Visby': 'Gotland Island',
+                'Fårö': 'North of Gotland Island'
+            };
+            return locationDescriptions[place.name] || place.description;
+        }
+
+        function getWeatherLocation(place) {
+            // Determine weather location based on place
+            if (place.name.includes('Gothenburg') || place.name === 'Liseberg' || place.name === 'Öckerö') {
+                return 'Gothenburg';
+            } else if (place.name === 'Visby' || place.name === 'Fårö') {
+                return 'Visby';
+            } else if (place.name === 'Ales stenar') {
+                return 'Ystad';
+            } else if (place.name === 'Skara Sommarland') {
+                return 'Skara';
+            }
+            return 'Gothenburg'; // Default
+        }
+
+        function getBestTimeToVisit(place) {
+            const tips = {
+                'entertainment': 'Summer months (June-August) for outdoor attractions. Check seasonal schedules as some attractions have limited winter hours.',
+                'nature': 'Summer (June-August) for warm weather and long daylight hours. Spring and autumn offer beautiful colors.',
+                'historical': 'May-September for best weather. Early morning or late afternoon for fewer crowds and better photography.',
+                'shopping': 'Year-round, but summer offers the best weather for exploring. December for Christmas markets.',
+                'culture': 'Check event calendars for special exhibitions. Summer has the most activities.',
+                'food': 'Year-round, but summer terraces are particularly enjoyable.',
+                'hotel': 'Book in advance during summer (June-August) and major holidays.',
+                'park': 'May-September for best weather and full bloom.',
+                'museum': 'Year-round, perfect for rainy days. Check for special exhibitions.',
+                'palace': 'May-September for gardens in full bloom. Winter can be magical with snow.'
+            };
+            return tips[place.category] || 'Check seasonal schedules and weather conditions before visiting.';
+        }
+
+        function getTransportInfo(place) {
+            const transport = {
+                'Liseberg': 'Tram 4, 5, 6, 8, or 13 to Liseberg stop. Also accessible by bus.',
+                'Skara Sommarland': 'By car via E20, or train to Skara station then taxi/bus.',
+                'Gothenburg Gokartcenter': 'Bus 35 from central Gothenburg, or by car.',
+                'Öckerö': 'Ferry from Lilla Varholmen (free with Västtrafik ticket).',
+                'Ales stenar': 'By car to Kåseberga, then 20-minute walk. Bus from Ystad in summer.',
+                'Visby': 'Ferry from Nynäshamn or Oskarshamn, or flight to Visby Airport.',
+                'Fårö': 'Free car ferry from Fårösund on Gotland (runs frequently).'
+            };
+            return transport[place.name] || 'Check local transport apps for the best route from your location.';
+        }
+
+        function getPhotoSpots(place) {
+            const photoSpots = {
+                'entertainment': 'Roller coasters, colorful rides, and illuminated attractions at dusk.',
+                'nature': 'Scenic viewpoints, sunset/sunrise spots, and seasonal natural features.',
+                'historical': 'Ancient structures, architectural details, and panoramic views.',
+                'shopping': 'Street scenes, market stalls, and architectural facades.',
+                'culture': 'Museum exhibits, cultural performances, and architectural elements.',
+                'food': 'Beautifully plated dishes, restaurant interiors, and outdoor dining areas.',
+                'hotel': 'Lobby areas, room views, and architectural features.',
+                'park': 'Gardens, fountains, sculptures, and seasonal blooms.',
+                'museum': 'Unique exhibits, architecture, and interactive displays.',
+                'palace': 'Grand halls, gardens, and architectural details.'
+            };
+            return photoSpots[place.category] || 'Look for unique features and local atmosphere that capture the essence of the place.';
+        }
+
+        // Start loading place data
+        loadPlaceData();
+    </script>
+</body>
+</html>
