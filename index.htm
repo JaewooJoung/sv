@@ -963,11 +963,18 @@
             if (!userLocation || places.length === 0) return;
             
             places.forEach(place => {
-                const distance = calculateDistance(
-                    userLocation.lat, userLocation.lng,
-                    place.lat, place.lng
-                );
-                place.distance = distance.toFixed(1);
+                // Make sure place has valid coordinates
+                if (place.lat && place.lng && !isNaN(place.lat) && !isNaN(place.lng)) {
+                    const distance = calculateDistance(
+                        userLocation.lat, userLocation.lng,
+                        place.lat, place.lng
+                    );
+                    
+                    // Only set distance if calculation is valid
+                    if (!isNaN(distance) && isFinite(distance)) {
+                        place.distance = distance.toFixed(1);
+                    }
+                }
             });
         }
 
@@ -1023,6 +1030,11 @@
             }
         }
 
+        // Navigate to place detail page
+        function goToPlaceDetail(placeId) {
+            window.location.href = `places.html?id=${placeId}`;
+        }
+
         // Render place cards
         function renderPlaceCards() {
             const grid = document.getElementById('places-grid');
@@ -1038,21 +1050,37 @@
                 return;
             }
             
-            grid.innerHTML = processedPlaces.map(place => `
-                <div class="place-card" data-category="${place.category}" onmousemove="updateMousePosition(event, this)">
-                    <div class="place-card-bg" style="background-image: url('${place.image || place.images?.[0] || 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400'}')"></div>
-                    <div class="place-card-content">
-                        <div class="category">${place.category}</div>
-                        <h3>${place.name}</h3>
-                        <p>${place.description}</p>
-                        ${place.distance ? `<div class="distance">${place.distance} km away</div>` : ''}
-                        <div class="details">
-                            <span class="time">${place.hours || place.opening_hours || 'Hours vary'}</span>
-                            <button class="visit-btn" onclick="focusOnPlace(${place.lat}, ${place.lng})">View on Map</button>
+            grid.innerHTML = processedPlaces.map(place => {
+                // Safely get distance display
+                let distanceDisplay = '';
+                if (userLocation && place.lat && place.lng) {
+                    const distance = calculateDistance(
+                        userLocation.lat, userLocation.lng,
+                        place.lat, place.lng
+                    );
+                    if (!isNaN(distance) && isFinite(distance)) {
+                        distanceDisplay = `<div class="distance">${distance.toFixed(1)} km away</div>`;
+                    }
+                } else if (place.distance && !isNaN(parseFloat(place.distance))) {
+                    distanceDisplay = `<div class="distance">${place.distance} km away</div>`;
+                }
+                
+                return `
+                    <div class="place-card" data-category="${place.category}" onmousemove="updateMousePosition(event, this)" onclick="goToPlaceDetail(${place.id})">
+                        <div class="place-card-bg" style="background-image: url('${place.image || place.images?.[0] || 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400'}')"></div>
+                        <div class="place-card-content">
+                            <div class="category">${place.category}</div>
+                            <h3><a href="places.html?id=${place.id}" onclick="event.stopPropagation()">${place.name}</a></h3>
+                            <p>${place.description}</p>
+                            ${distanceDisplay}
+                            <div class="details">
+                                <span class="time">${place.hours || place.opening_hours || 'Hours vary'}</span>
+                                <button class="visit-btn" onclick="event.stopPropagation(); focusOnPlace(${place.lat}, ${place.lng})">View on Map</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         // Update mouse position for card hover effects
@@ -1076,17 +1104,21 @@
             markers = [];
             
             places.forEach(place => {
-                const marker = L.marker([place.lat, place.lng]).addTo(map);
-                marker.bindPopup(`
-                    <div style="text-align: center;">
-                        <h3>${place.name}</h3>
-                        <p>${place.description}</p>
-                        <p><strong>Hours:</strong> ${place.hours || place.opening_hours || 'Hours vary'}</p>
-                        ${place.distance ? `<p><strong>Distance:</strong> ${place.distance} km</p>` : ''}
-                        ${place.website ? `<br><a href="${place.website}" target="_blank" style="color: #1e40af;">Visit Website</a>` : ''}
-                    </div>
-                `);
-                markers.push(marker);
+                // Make sure place has valid coordinates
+                if (place.lat && place.lng && !isNaN(place.lat) && !isNaN(place.lng)) {
+                    const marker = L.marker([place.lat, place.lng]).addTo(map);
+                    marker.bindPopup(`
+                        <div style="text-align: center;">
+                            <h3>${place.name}</h3>
+                            <p>${place.description}</p>
+                            <p><strong>Hours:</strong> ${place.hours || place.opening_hours || 'Hours vary'}</p>
+                            ${place.distance ? `<p><strong>Distance:</strong> ${place.distance} km</p>` : ''}
+                            <button onclick="goToPlaceDetail(${place.id})" style="background: #1e40af; color: white; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin: 5px;">View Details</button>
+                            ${place.website ? `<br><a href="${place.website}" target="_blank" style="color: #1e40af;">Visit Website</a>` : ''}
+                        </div>
+                    `);
+                    markers.push(marker);
+                }
             });
         }
 
