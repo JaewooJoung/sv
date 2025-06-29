@@ -1,5 +1,21 @@
 [
   {
+    "id": 1,
+    "name": "Liseberg",
+    "category": "entertainment",
+    "coordinates": {
+      "latitude": 57.6949,
+      "longitude": 11.9926
+    },
+    "description": "Scandinavia's largest amusement park with thrilling rides, beautiful gardens, and seasonal events throughout the year.",
+    "hours": "Varies by season",
+    "admission": "From 95 SEK",
+    "website": "https://www.liseberg.se",
+    "color": "#ff6b6b",
+    "image": "/gb/png/1.png",
+    "detailedDescription": "Liseberg is Scandinavia's largest amusement park, located in Gothenburg. Founded in 1923, the park offers a perfect blend of thrilling rides, beautiful gardens, and family-friendly attractions. The park features over 40 rides including the wooden roller coaster Balder, consistently rated as one of the world's best. During summer, the park hosts concerts and shows, while the Christmas season transforms Liseberg into a magical winter wonderland with millions of lights, traditional Christmas market, and seasonal treats."
+  },
+  {
     "id": 2,
     "name": "Skara Sommarland",
     "category": "entertainment",
@@ -12,7 +28,8 @@
     "admission": "From 389 SEK",
     "website": "https://sommarland.se",
     "color": "#4169e1",
-    "image": "/gb/png/2.png"
+    "image": "/gb/png/2.png",
+    "detailedDescription": "Skara Sommarland is Sweden's largest water park and one of Scandinavia's most popular summer destinations. The park features numerous water attractions including wild river rides, wave pools, and adrenaline-pumping water slides. Beyond water activities, visitors can enjoy go-karting, mini golf, and live entertainment shows. The park is particularly famous for its family-friendly atmosphere and has attractions suitable for all ages, from toddler pools to extreme slides for thrill-seekers."
   },
   {
     "id": 3,
@@ -27,7 +44,8 @@
     "admission": "Contact for pricing",
     "website": "https://gokart.se",
     "color": "#ff9f1a",
-    "image": "/gb/png/3.png"
+    "image": "/gb/png/3.png",
+    "detailedDescription": "Gothenburg Gokartcenter offers one of Sweden's most exciting go-karting experiences with both indoor and outdoor tracks. The facility features high-performance karts and professionally designed tracks that challenge both beginners and experienced racers. They offer various racing formats including arrive-and-drive sessions, organized races, and corporate events. The center also provides all necessary safety equipment and instruction, making it accessible for families, groups of friends, and team-building activities."
   },
   {
     "id": 4,
@@ -42,7 +60,8 @@
     "admission": "Free",
     "website": "",
     "color": "#00d2d3",
-    "image": "/gb/png/4.png"
+    "image": "/gb/png/4.png",
+    "detailedDescription": "Öckerö is a charming island in the Gothenburg archipelago, offering visitors a glimpse into authentic Swedish coastal life. The island features picturesque fishing villages, rocky shores perfect for swimming and sunbathing, and scenic walking trails. The maritime heritage is evident in the traditional boat houses and the local museum showcasing the island's seafaring history. Visitors can enjoy fresh seafood at local restaurants, explore the nature reserve, or simply relax and enjoy the peaceful island atmosphere. The island is easily accessible by free ferry from the mainland."
   },
   {
     "id": 5,
@@ -57,7 +76,8 @@
     "admission": "Free",
     "website": "https://visitystadosterlen.se",
     "color": "#8b572a",
-    "image": "/gb/png/5.png"
+    "image": "/gb/png/5.png",
+    "detailedDescription": "Ales stenar (Ale's Stones) is Sweden's largest preserved stone ship formation, dramatically positioned on a hill overlooking the Baltic Sea near Kåseberga. This mysterious monument consists of 59 massive boulders arranged in a 67-meter-long ship formation, dating back to around 600 AD. The site offers breathtaking views of the coastline and is particularly magical at sunrise and sunset. While its exact purpose remains debated - theories range from astronomical calendar to burial monument - the site continues to captivate visitors with its ancient mystery and spectacular setting."
   },
   {
     "id": 6,
@@ -72,7 +92,8 @@
     "admission": "Free to explore",
     "website": "",
     "color": "#d35400",
-    "image": "/gb/png/6.png"
+    "image": "/gb/png/6.png",
+    "detailedDescription": "Visby, the 'City of Roses and Ruins,' is a UNESCO World Heritage site and one of the best-preserved medieval cities in Scandinavia. The town is surrounded by a remarkable 3.4 km medieval wall with 44 towers, built in the 13th century. Within the walls, cobblestone streets wind past merchant houses, church ruins, and blooming roses in summer. The town comes alive during Medieval Week in August, when knights, merchants, and minstrels fill the streets. Visby offers a unique combination of historical significance, architectural beauty, and modern Swedish coastal charm."
   },
   {
     "id": 7,
@@ -87,6 +108,7 @@
     "admission": "Free",
     "website": "",
     "color": "#27ae60",
-    "image": "/gb/png/7.png"
+    "image": "/gb/png/7.png",
+    "detailedDescription": "Fårö is a small island paradise north of Gotland, famous for its distinctive raukar (limestone sea stacks) and pristine beaches. The island gained international recognition through filmmaker Ingmar Bergman, who lived here and used it as a location for several films. Visitors can explore the otherworldly rock formations at Langhammars, relax on the white sand beaches of Sudersand, or visit the Bergman Center. The island maintains a wild, unspoiled character with its sparse population, sheep farms, and dramatic coastal landscapes, making it perfect for nature lovers and those seeking tranquility."
   }
 ]
