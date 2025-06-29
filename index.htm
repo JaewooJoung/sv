@@ -856,4 +856,109 @@
                 card.style.animationDelay = `${index * 0.1}s`;
                 
                 // Create title with link to detail page
-                const titleHTML = `<h3><a href="place.html?id=${place.id}" style="color: inherit; text-decoration: none;">${place.name}</a></h3>
+                const titleHTML = `<h3><a href="place.html?id=${place.id}" style="color: inherit; text-decoration: none;">${place.name}</a></h3>`;
+                
+                card.innerHTML = `
+                    <div class="place-card-bg" style="background-image: url('${place.image}')"></div>
+                    <div class="place-card-content">
+                        ${titleHTML}
+                        <span class="category">${place.category}</span>
+                        ${place.distance ? `<div class="distance">${place.distance} km from you</div>` : ''}
+                        <p>${place.description}</p>
+                        <div class="details">
+                            <span class="time">${place.hours}</span>
+                            <button class="visit-btn" onclick="focusPlace(${place.coordinates.latitude}, ${place.coordinates.longitude})">Show on Map</button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add mouse move effect
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter places
+        function filterPlaces(category) {
+            currentFilter = category;
+            
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update markers visibility
+            markers.forEach(marker => {
+                if (category === 'all' || marker.category === category) {
+                    marker.addTo(map);
+                } else {
+                    marker.remove();
+                }
+            });
+            
+            renderPlaceCards();
+        }
+
+        // Sort by distance
+        function sortByDistance() {
+            if (!userLocation) {
+                alert('Please allow location access to sort attractions by distance from your current position');
+                return;
+            }
+            
+            currentSort = 'distance';
+            document.getElementById('sort-distance').classList.add('active');
+            document.getElementById('sort-name').classList.remove('active');
+            renderPlaceCards();
+        }
+
+        // Sort by name
+        function sortByName() {
+            currentSort = 'name';
+            document.getElementById('sort-name').classList.add('active');
+            document.getElementById('sort-distance').classList.remove('active');
+            renderPlaceCards();
+        }
+
+        // Focus on specific place
+        function focusPlace(lat, lng) {
+            map.setView([lat, lng], 16);
+            document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scroll
+        document.querySelector('.cta-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('map-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Add radar animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes radar {
+                0% {
+                    opacity: 1;
+                    transform: translate(-50%, -50%) scale(0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translate(-50%, -50%) scale(1);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Load places when page loads
+        loadPlaces();
+        
+        // Refresh weather every 10 minutes
+        setInterval(getWeather, 600000);
+    </script>
+</body>
+</html>
