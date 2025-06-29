@@ -110,5 +110,181 @@
     "color": "#27ae60",
     "image": "/sv/png/7.png",
     "detailedDescription": "Fårö is a small island paradise north of Gotland, famous for its distinctive raukar (limestone sea stacks) and pristine beaches. The island gained international recognition through filmmaker Ingmar Bergman, who lived here and used it as a location for several films. Visitors can explore the otherworldly rock formations at Langhammars, relax on the white sand beaches of Sudersand, or visit the Bergman Center. The island maintains a wild, unspoiled character with its sparse population, sheep farms, and dramatic coastal landscapes, making it perfect for nature lovers and those seeking tranquility."
+  },
+  {
+    "id": 8,
+    "name": "Tjolöholm Castle",
+    "category": "historical",
+    "coordinates": {
+      "latitude": 57.4025,
+      "longitude": 12.0978
+    },
+    "description": "Stunning early 20th-century castle with English-inspired architecture and beautiful gardens.",
+    "hours": "10 AM - 5 PM (varies by season)",
+    "admission": "From 120 SEK",
+    "website": "https://www.tjoloholm.se",
+    "color": "#8b572a",
+    "image": "/sv/png/8.png",
+    "detailedDescription": "Tjolöholm Castle is a magnificent example of early 20th-century architecture, blending English Tudor and Arts and Crafts styles. Built between 1898-1904, the castle features original interiors with exquisite craftsmanship, including hand-carved woodwork and stained glass. The surrounding gardens offer both formal and natural landscapes with sea views. The estate also includes a picturesque workers' village and hosts various cultural events throughout the year. Visitors can enjoy guided tours of the castle, stroll through the gardens, or dine at the castle café."
+  },
+  {
+    "id": 9,
+    "name": "Ramberget Hill",
+    "category": "nature",
+    "coordinates": {
+      "latitude": 57.7044,
+      "longitude": 11.9339
+    },
+    "description": "Popular viewpoint offering panoramic views of Gothenburg and the archipelago.",
+    "hours": "Always accessible",
+    "admission": "Free",
+    "website": "",
+    "color": "#27ae60",
+    "image": "/sv/png/9.png",
+    "detailedDescription": "Ramberget is one of Gothenburg's most beloved natural attractions, a 87-meter-high hill providing spectacular 360-degree views of the city, harbor, and surrounding islands. The hill features walking paths through lush vegetation, interesting rock formations, and several viewpoints. It's particularly popular at sunset and for picnics. The area is rich in biodiversity with many bird species and protected plants. Visitors can walk up the gentle slopes or take the more challenging 'stairway' with 260 steps for a quicker ascent."
+  },
+  {
+    "id": 10,
+    "name": "Hönö",
+    "category": "nature",
+    "coordinates": {
+      "latitude": 57.6894,
+      "longitude": 11.6508
+    },
+    "description": "Charming fishing village in the Gothenburg archipelago with excellent seafood restaurants.",
+    "hours": "Always accessible",
+    "admission": "Free",
+    "website": "",
+    "color": "#00d2d3",
+    "image": "/sv/png/10.png",
+    "detailedDescription": "Hönö is one of the larger islands in the Gothenburg archipelago, known for its authentic fishing village atmosphere and excellent seafood. The island offers beautiful coastal scenery with rocky shores and sandy beaches, perfect for swimming and sunbathing. Visitors can explore the charming harbor area with its fish market, seafood restaurants, and traditional wooden houses. The island also has several nature reserves with walking trails and birdwatching opportunities. Don't miss the Hönö Klåva harbor area with its fish auctions and cultural events."
+  },
+  {
+    "id": 11,
+    "name": "Marstrand",
+    "category": "historical",
+    "coordinates": {
+      "latitude": 57.8860,
+      "longitude": 11.5800
+    },
+    "description": "Historic coastal town famous for its fortress, sailing culture, and summer events.",
+    "hours": "Always accessible",
+    "admission": "Free (fortress admission separate)",
+    "website": "https://www.marstrand.se",
+    "color": "#d35400",
+    "image": "/sv/png/11.png",
+    "detailedDescription": "Marstrand is a picturesque coastal town known for its 17th-century Carlsten Fortress, vibrant sailing culture, and lively summer atmosphere. The town's charming streets are lined with colorful wooden houses, boutique shops, and seafood restaurants. The fortress dominates the island's skyline and offers guided tours with dramatic history about prisoners and naval battles. Marstrand hosts prestigious sailing competitions including the Match Cup Sweden. Visitors can enjoy boat tours of the archipelago, swim from smooth granite rocks, or attend summer concerts and festivals."
+  },
+  {
+    "id": 12,
+    "name": "Tjörn",
+    "category": "nature",
+    "coordinates": {
+      "latitude": 58.0167,
+      "longitude": 11.6333
+    },
+    "description": "Island known for its scenic beauty, art galleries, and the famous Pilane sculpture park.",
+    "hours": "Always accessible",
+    "admission": "Free",
+    "website": "https://www.tjorn.se",
+    "color": "#27ae60",
+    "image": "/sv/png/12.png",
+    "detailedDescription": "Tjörn is the sixth largest island in Sweden, connected to the mainland by bridge, offering stunning coastal landscapes and a thriving art scene. The island is home to the Nordic Watercolor Museum and the remarkable Pilane Sculpture Park where contemporary art meets ancient cultural heritage in an open-air setting. Tjörn's coastline features beautiful swimming spots, fishing villages, and nature reserves perfect for hiking and birdwatching. The island is particularly known for its dramatic sunsets and the annual Tjörn Runt sailing race."
+  },
+  {
+    "id": 13,
+    "name": "Gunnebo Palace and Gardens",
+    "category": "historical",
+    "coordinates": {
+      "latitude": 57.6333,
+      "longitude": 12.0500
+    },
+    "description": "18th-century neoclassical summer palace with beautiful English-style gardens.",
+    "hours": "10 AM - 6 PM (varies by season)",
+    "admission": "From 80 SEK",
+    "website": "https://www.gunneboslott.se",
+    "color": "#8b572a",
+    "image": "/sv/png/13.png",
+    "detailedDescription": "Gunnebo House is an elegant neoclassical summer palace built in the late 18th century for a wealthy Gothenburg merchant family. Designed by architect Carl Wilhelm Carlberg, the estate features beautifully preserved interiors showcasing period furniture and artwork. The surrounding English-style gardens include formal flower beds, a kitchen garden, woodland walks, and a picturesque pond. Visitors can enjoy guided tours of the house, participate in historical workshops, or dine at the organic café using produce from the estate's gardens."
+  },
+  {
+    "id": 14,
+    "name": "Styrsö",
+    "category": "nature",
+    "coordinates": {
+      "latitude": 57.6167,
+      "longitude": 11.7833
+    },
+    "description": "Idyllic island in the Gothenburg archipelago with car-free villages and scenic walking paths.",
+    "hours": "Always accessible",
+    "admission": "Free",
+    "website": "",
+    "color": "#00d2d3",
+    "image": "/sv/png/14.png",
+    "detailedDescription": "Styrsö is a peaceful island in the southern Gothenburg archipelago, known for its car-free villages, scenic walking paths, and relaxed atmosphere. The island features charming wooden houses, small beaches, and beautiful viewpoints overlooking the sea. Visitors can explore the island's network of walking trails that pass through pine forests and along rocky shores. The main villages of Styrsö have small grocery stores, cafés, and restaurants serving local seafood. The island is easily accessible by regular ferry from Gothenburg and offers a perfect escape from city life."
+  },
+  {
+    "id": 15,
+    "name": "Råda Säteri",
+    "category": "historical",
+    "coordinates": {
+      "latitude": 57.9833,
+      "longitude": 12.0833
+    },
+    "description": "Historic manor house with beautiful gardens and cultural events.",
+    "hours": "10 AM - 5 PM (varies by season)",
+    "admission": "From 100 SEK",
+    "website": "https://www.radasateri.se",
+    "color": "#8b572a",
+    "image": "/sv/png/15.png",
+    "detailedDescription": "Råda Säteri is a well-preserved 18th-century manor estate offering a glimpse into Sweden's aristocratic past. The main manor house features period interiors with original furnishings and artwork. The estate includes formal gardens, a historic orangery, and walking paths through the surrounding parkland. Råda Säteri hosts various cultural events throughout the year including concerts, art exhibitions, and Christmas markets. Visitors can enjoy guided tours of the manor, stroll through the gardens, or dine at the estate's café serving traditional Swedish fare."
+  },
+  {
+    "id": 16,
+    "name": "Haga",
+    "category": "historical",
+    "coordinates": {
+      "latitude": 57.7000,
+      "longitude": 11.9667
+    },
+    "description": "Gothenburg's oldest district with well-preserved 19th-century wooden houses and cozy cafés.",
+    "hours": "Always accessible",
+    "admission": "Free",
+    "website": "",
+    "color": "#d35400",
+    "image": "/sv/png/16.png",
+    "detailedDescription": "Haga is Gothenburg's most charming historic neighborhood, known for its well-preserved 19th-century wooden houses and cobblestone streets. The area was once a working-class district but has transformed into a trendy area with boutique shops, antique stores, and famous cafés like Café Husaren known for its giant cinnamon buns. Haga offers a unique atmosphere with its low wooden buildings, small courtyards, and vibrant street life. Visitors can explore the area's history at the Haga Museum, shop for handicrafts, or simply enjoy the relaxed atmosphere in one of the many cafés."
+  },
+  {
+    "id": 17,
+    "name": "Eriksberg",
+    "category": "nature",
+    "coordinates": {
+      "latitude": 57.7000,
+      "longitude": 11.9000
+    },
+    "description": "Former shipyard area transformed into a modern waterfront district with wildlife reserve.",
+    "hours": "Always accessible",
+    "admission": "Free",
+    "website": "",
+    "color": "#00d2d3",
+    "image": "/sv/png/17.png",
+    "detailedDescription": "Eriksberg is a unique urban transformation project where a former shipyard and industrial area has been redeveloped into a modern residential and commercial district with a nature reserve. The area features a mix of contemporary architecture and preserved industrial heritage. The Eriksberg Nature Reserve offers walking paths along the waterfront with opportunities to see seals and various bird species. The area also has restaurants, a hotel, and cultural events. The contrast between the modern developments and wild nature makes Eriksberg a fascinating place to explore."
+  },
+  {
+    "id": 18,
+    "name": "Varberg Castle",
+    "category": "historical",
+    "coordinates": {
+      "latitude": 57.1083,
+      "longitude": 12.2500
+    },
+    "description": "Well-preserved medieval fortress housing a museum and the famous Bocksten Man bog body.",
+    "hours": "10 AM - 5 PM (varies by season)",
+    "admission": "From 80 SEK",
+    "website": "https://www.varberg.se/kultur-och-fritid/varbergs-fastning.html",
+    "color": "#8b572a",
+    "image": "/sv/png/18.png",
+    "detailedDescription": "Varberg Fortress is one of Scandinavia's best-preserved medieval fortifications, dating back to the 13th century. The massive stone fortress houses the Halland Museum of Cultural History, featuring exhibitions on local history including the famous Bocksten Man - a medieval bog body discovered in the 1930s. Visitors can explore the fortress walls, towers, and underground passages while learning about the site's military history. The fortress offers panoramic views of the Kattegat sea and hosts various cultural events throughout the year. The adjacent fortress bathhouse is a popular spot for swimming."
   }
 ]
