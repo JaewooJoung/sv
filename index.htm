@@ -126,7 +126,7 @@
             height: 100vh;
             background: 
                 linear-gradient(135deg, rgba(30, 64, 175, 0.85) 0%, rgba(45, 212, 191, 0.85) 100%),
-                url('/sv/png/sweden.png') center/cover no-repeat;
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -396,6 +396,167 @@
             flex-direction: column;
         }
 
+        .place-card.nearest {
+            border: 2px solid #4CAF50;
+            box-shadow: 0 0 30px rgba(76, 175, 80, 0.3);
+        }
+
+        .place-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 0;
+        }
+
+        .place-card:hover .place-card-bg {
+            opacity: 0.4;
+            transform: scale(1.05);
+        }
+
+        .place-card-content {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .place-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(30, 64, 175, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .place-card:hover::before {
+            opacity: 1;
+        }
+
+        .place-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.3);
+        }
+
+        .place-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .place-card h3 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .place-card h3 a:hover {
+            color: #60a5fa;
+        }
+
+        .place-card .category {
+            display: inline-block;
+            padding: 5px 15px;
+            background: rgba(30, 64, 175, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            color: #60a5fa;
+            border: 1px solid rgba(30, 64, 175, 0.4);
+            text-transform: capitalize;
+        }
+
+        .place-card p {
+            color: #d0d0d0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .place-card .distance {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 15px 0;
+            color: #4CAF50;
+            font-weight: 600;
+        }
+
+        .place-card .distance::before {
+            content: '🚶‍♂️';
+            font-size: 1.2rem;
+        }
+
+        .place-card .details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .place-card .time {
+            color: #2dd4bf;
+            font-weight: 600;
+        }
+
+        .place-card .visit-btn {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #1e40af, #2dd4bf);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .place-card .visit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover {
+            background: rgba(30, 64, 175, 0.3);
+            border-color: #1e40af;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #1e40af, #2dd4bf);
+            border-color: transparent;
+        }
+
         .footer {
             text-align: center;
             padding: 50px 0;
@@ -420,6 +581,23 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: #ff5252;
+            background: rgba(255, 82, 82, 0.1);
+            border: 1px solid rgba(255, 82, 82, 0.2);
+            border-radius: 15px;
+            margin: 20px 0;
         }
 
         @media (max-width: 768px) {
@@ -511,17 +689,23 @@
                 </div>
             </div>
             
+            <div class="filter-container" id="filter-container" style="display: none;">
+                <button class="filter-btn active" onclick="filterPlaces('all')">All Adventures</button>
+                <button class="filter-btn" onclick="filterPlaces('museum')">Museums & Galleries</button>
+                <button class="filter-btn" onclick="filterPlaces('park')">Parks & Nature</button>
+                <button class="filter-btn" onclick="filterPlaces('shopping')">Shopping Districts</button>
+                <button class="filter-btn" onclick="filterPlaces('culture')">Cultural Sites</button>
+                <button class="filter-btn" onclick="filterPlaces('entertainment')">Entertainment</button>
+                <button class="filter-btn" onclick="filterPlaces('food')">Food & Dining</button>
+                <button class="filter-btn" onclick="filterPlaces('hotel')">Hotels & Accommodation</button>
+                <button class="filter-btn" onclick="filterPlaces('nature')">Nature & Islands</button>
+                <button class="filter-btn" onclick="filterPlaces('historical')">Historical Sites</button>
+            </div>
+
             <div class="places-grid" id="places-grid">
-                <!-- Sample places will be shown here -->
-                <div class="place-card">
-                    <div style="position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column;">
-                        <div style="display: inline-block; padding: 5px 15px; background: rgba(30, 64, 175, 0.3); backdrop-filter: blur(10px); border-radius: 20px; font-size: 0.9rem; margin-bottom: 15px; color: #60a5fa; border: 1px solid rgba(30, 64, 175, 0.4);">Sample Location</div>
-                        <h3>Göteborg Centrum</h3>
-                        <p>Explore the heart of Sweden's second-largest city with its beautiful architecture and vibrant culture.</p>
-                        <div style="display: flex; align-items: center; gap: 5px; margin: 15px 0; color: #4CAF50; font-weight: 600;">
-                            🚶‍♂️ <span id="distance-display">Calculating distance...</span>
-                        </div>
-                    </div>
+                <div class="loading-message">
+                    <div class="loading" style="margin: 0 auto 20px;"></div>
+                    <p>Loading amazing places in Sweden...</p>
                 </div>
             </div>
         </div>
@@ -535,9 +719,13 @@
 
     <script>
         // Global variables
+        let places = [];
         let userLocation = null;
         let userMarker = null;
         let autoScrollEnabled = true;
+        let currentFilter = 'all';
+        let markers = [];
+        let nearestPlaceId = null;
 
         // Initialize map centered on Göteborg
         const map = L.map('map').setView([57.7089, 11.9746], 12);
@@ -578,6 +766,56 @@
             iconAnchor: [10, 10]
         });
 
+        // Load places data from JSON file
+        async function loadPlacesData() {
+            try {
+                console.log('Starting to load places.json...');
+                const response = await fetch('places.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                places = await response.json();
+                console.log('Places data loaded successfully:', places.length, 'places');
+                
+                // Show filter controls now that data is loaded
+                document.getElementById('filter-container').style.display = 'flex';
+                
+                // Initialize map and UI after data loads
+                addMarkersToMap();
+                renderPlaceCards();
+                
+                // Update distances if user location is available
+                if (userLocation) {
+                    updateDistances();
+                    renderPlaceCards();
+                }
+                
+                return true;
+            } catch (error) {
+                console.error('Error loading places data:', error);
+                
+                // Show error message to user
+                const grid = document.getElementById('places-grid');
+                grid.innerHTML = `
+                    <div class="error-message" style="grid-column: 1 / -1;">
+                        <h3>❌ Error Loading Places</h3>
+                        <p>Could not load places.json file. Please check:</p>
+                        <ul style="text-align: left; margin: 20px 0;">
+                            <li>The places.json file exists in the same folder as this HTML file</li>
+                            <li>The JSON file is properly formatted</li>
+                            <li>Your web server is running (you can't open this directly in browser)</li>
+                        </ul>
+                        <p><strong>Error details:</strong> ${error.message}</p>
+                        <button onclick="loadPlacesData()" style="background: #1e40af; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 15px;">Retry Loading</button>
+                    </div>
+                `;
+                
+                return false;
+            }
+        }
+
         // Enhanced GPS tracking function
         function showPosition(position) {
             const latitude = position.coords.latitude;
@@ -617,10 +855,6 @@
                     
                     // Update weather for current location
                     getWeatherForLocation(city);
-                    
-                    // Calculate distance to sample location (Göteborg Centrum)
-                    const distance = calculateDistance(latitude, longitude, 57.7089, 11.9746);
-                    document.getElementById('distance-display').textContent = `${distance.toFixed(1)} km away`;
                 })
                 .catch(error => {
                     console.error('Error getting city:', error);
@@ -629,6 +863,16 @@
 
             // Update user marker on map
             updateUserMarker(latitude, longitude);
+            
+            // Update distances if places are loaded
+            if (places.length > 0) {
+                updateDistances();
+                renderPlaceCards();
+                
+                if (autoScrollEnabled) {
+                    findAndScrollToNearest();
+                }
+            }
         }
 
         function showError(error) {
@@ -677,42 +921,7 @@
                 document.getElementById("gps-status-text").textContent = "GPS not supported";
             }
         }
-        
-        // Load places data from JSON file
-        async function loadPlacesData() {
-            try {Add commentMore actions
-                const response = await fetch('places.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                places = await response.json();
-                console.log('Places data loaded:', places.length, 'places');
-                
-                // Initialize map and UI after data loads
-                addMarkersToMap();
-                renderPlaceCards();
-                
-                // Update distances if user location is available
-                if (userLocation) {
-                    updateDistances();
-                    renderPlaceCards();
-                }
-            } catch (error) {
-                console.error('Error loading places data:', error);
-                
-                // Fallback: show error message to user
-                const grid = document.getElementById('places-grid');
-                grid.innerHTML = `
-                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #ff5252;">
-                        <h3>Error Loading Places</h3>
-                        <p>Could not load places.json file. Please check if the file exists and is properly formatted.</p>
-                        <p>Error: ${error.message}</p>
-                    </div>
-                `;
-            }
-            // Center map on user location
-            map.setView([lat, lng], 14);
-        }
+
         // Update user marker on map
         function updateUserMarker(lat, lng) {
             // Remove existing marker if it exists
@@ -749,11 +958,154 @@
             return deg * (Math.PI/180);
         }
 
+        // Update distances for all places
+        function updateDistances() {
+            if (!userLocation || places.length === 0) return;
+            
+            places.forEach(place => {
+                const distance = calculateDistance(
+                    userLocation.lat, userLocation.lng,
+                    place.lat, place.lng
+                );
+                place.distance = distance.toFixed(1);
+            });
+        }
+
+        // Get processed places with current filter
+        function getProcessedPlaces() {
+            let filteredPlaces = places;
+            
+            if (currentFilter !== 'all') {
+                filteredPlaces = places.filter(place => place.category === currentFilter);
+            }
+            
+            return filteredPlaces;
+        }
+
+        // Find nearest place and scroll to it
+        function findAndScrollToNearest() {
+            if (!userLocation || places.length === 0) return;
+            
+            let nearestPlace = null;
+            let shortestDistance = Infinity;
+            
+            const processedPlaces = getProcessedPlaces();
+            
+            processedPlaces.forEach(place => {
+                if (place.distance) {
+                    const dist = parseFloat(place.distance);
+                    if (dist < shortestDistance) {
+                        shortestDistance = dist;
+                        nearestPlace = place;
+                    }
+                }
+            });
+            
+            if (nearestPlace && nearestPlace.id !== nearestPlaceId) {
+                nearestPlaceId = nearestPlace.id;
+                
+                // Find the card element and scroll to it
+                const cards = document.querySelectorAll('.place-card');
+                cards.forEach((card, index) => {
+                    const cardTitle = card.querySelector('h3')?.textContent;
+                    if (cardTitle === nearestPlace.name) {
+                        // Highlight nearest card
+                        document.querySelectorAll('.place-card').forEach(c => c.classList.remove('nearest'));
+                        card.classList.add('nearest');
+                        
+                        // Smooth scroll to card
+                        card.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }
+                });
+            }
+        }
+
+        // Render place cards
+        function renderPlaceCards() {
+            const grid = document.getElementById('places-grid');
+            let processedPlaces = getProcessedPlaces();
+            
+            if (processedPlaces.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #888;">
+                        <h3>No places found</h3>
+                        <p>No places match the current filter or no data is available.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = processedPlaces.map(place => `
+                <div class="place-card" data-category="${place.category}" onmousemove="updateMousePosition(event, this)">
+                    <div class="place-card-bg" style="background-image: url('${place.image || place.images?.[0] || 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400'}')"></div>
+                    <div class="place-card-content">
+                        <div class="category">${place.category}</div>
+                        <h3>${place.name}</h3>
+                        <p>${place.description}</p>
+                        ${place.distance ? `<div class="distance">${place.distance} km away</div>` : ''}
+                        <div class="details">
+                            <span class="time">${place.hours || place.opening_hours || 'Hours vary'}</span>
+                            <button class="visit-btn" onclick="focusOnPlace(${place.lat}, ${place.lng})">View on Map</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Update mouse position for card hover effects
+        function updateMousePosition(event, card) {
+            const rect = card.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            card.style.setProperty('--mouse-x', x + 'px');
+            card.style.setProperty('--mouse-y', y + 'px');
+        }
+
+        // Focus on place on map
+        function focusOnPlace(lat, lng) {
+            map.setView([lat, lng], 15);
+        }
+
+        // Add markers to map
+        function addMarkersToMap() {
+            // Clear existing markers
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+            
+            places.forEach(place => {
+                const marker = L.marker([place.lat, place.lng]).addTo(map);
+                marker.bindPopup(`
+                    <div style="text-align: center;">
+                        <h3>${place.name}</h3>
+                        <p>${place.description}</p>
+                        <p><strong>Hours:</strong> ${place.hours || place.opening_hours || 'Hours vary'}</p>
+                        ${place.distance ? `<p><strong>Distance:</strong> ${place.distance} km</p>` : ''}
+                        ${place.website ? `<br><a href="${place.website}" target="_blank" style="color: #1e40af;">Visit Website</a>` : ''}
+                    </div>
+                `);
+                markers.push(marker);
+            });
+        }
+
+        // Filter functions
+        function filterPlaces(category) {
+            currentFilter = category;
+            
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            renderPlaceCards();
+        }
+
         // Weather function for current location
         function getWeatherForLocation(city) {
             const weatherContainer = document.getElementById('weather-container');
             
-            // Use a free weather API (OpenWeatherMap requires API key, so we'll show sample data)
+            // Use sample data since we don't have a weather API key
             weatherContainer.innerHTML = `
                 <div class="weather-location">${city}, Sweden</div>
                 <div class="weather-content">
@@ -830,17 +1182,29 @@
         // Handle auto-scroll checkbox
         document.getElementById('auto-scroll').addEventListener('change', function(e) {
             autoScrollEnabled = e.target.checked;
+            if (autoScrollEnabled) {
+                findAndScrollToNearest();
+            }
         });
 
         // Initialize the application
-        function init() {
+        async function init() {
+            console.log('Initializing application...');
+            
             // Show initial weather
             showInitialWeather();
             
             // Start GPS tracking
             startContinuousTracking();
-                       // Load places data from JSON file
-            await loadPlacesData();
+            
+            // Load places data from JSON file
+            const placesLoaded = await loadPlacesData();
+            
+            if (placesLoaded) {
+                console.log('Application initialized successfully');
+            } else {
+                console.log('Application initialized with places loading error');
+            }
             
             // Add smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
