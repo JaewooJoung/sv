@@ -1,0 +1,92 @@
+[
+  {
+    "id": 2,
+    "name": "Skara Sommarland",
+    "category": "entertainment",
+    "coordinates": {
+      "latitude": 58.3857,
+      "longitude": 13.4015
+    },
+    "description": "Water & theme park with slides, flumes, a go karting area & live entertainment stunt shows.",
+    "hours": "Open until 7 PM (varies by season)",
+    "admission": "From 389 SEK",
+    "website": "https://sommarland.se",
+    "color": "#4169e1",
+    "image": "/gb/png/2.png"
+  },
+  {
+    "id": 3,
+    "name": "Gothenburg Gokartcenter",
+    "category": "entertainment",
+    "coordinates": {
+      "latitude": 57.7214,
+      "longitude": 11.9639
+    },
+    "description": "Go-karting venue offering exciting racing experiences for all skill levels.",
+    "hours": "Varies",
+    "admission": "Contact for pricing",
+    "website": "https://gokart.se",
+    "color": "#ff9f1a",
+    "image": "/gb/png/3.png"
+  },
+  {
+    "id": 4,
+    "name": "Öckerö",
+    "category": "nature",
+    "coordinates": {
+      "latitude": 57.7089,
+      "longitude": 11.6546
+    },
+    "description": "An island and locality, seat of Öckerö Municipality with beautiful coastal scenery and maritime heritage.",
+    "hours": "Always accessible",
+    "admission": "Free",
+    "website": "",
+    "color": "#00d2d3",
+    "image": "/gb/png/4.png"
+  },
+  {
+    "id": 5,
+    "name": "Ales stenar",
+    "category": "historical",
+    "coordinates": {
+      "latitude": 55.3829,
+      "longitude": 14.0544
+    },
+    "description": "1400-year-old monument in the shape of a ship, made up of 59 large stones & perched on a hill.",
+    "hours": "Open 24 hours",
+    "admission": "Free",
+    "website": "https://visitystadosterlen.se",
+    "color": "#8b572a",
+    "image": "/gb/png/5.png"
+  },
+  {
+    "id": 6,
+    "name": "Visby",
+    "category": "historical",
+    "coordinates": {
+      "latitude": 57.6348,
+      "longitude": 18.2948
+    },
+    "description": "Town on Gotland known for its well-preserved medieval town wall, defensive towers, churches and cobblestone streets lined with cafes.",
+    "hours": "Always accessible",
+    "admission": "Free to explore",
+    "website": "",
+    "color": "#d35400",
+    "image": "/gb/png/6.png"
+  },
+  {
+    "id": 7,
+    "name": "Fårö",
+    "category": "nature",
+    "coordinates": {
+      "latitude": 57.9550,
+      "longitude": 19.3550
+    },
+    "description": "A scenic island north of Gotland known for its unique rock formations, beaches, and natural beauty.",
+    "hours": "Always accessible",
+    "admission": "Free",
+    "website": "",
+    "color": "#27ae60",
+    "image": "/gb/png/7.png"
+  }
+]
